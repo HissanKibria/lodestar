@@ -2,22 +2,10 @@ services:
   - type: web
     name: lodestar
     runtime: python
-    plan: starter            # persistent disks need a paid plan (about $7/month)
+    plan: free               # free tier: data resets on restart; demo accounts are re-seeded
     buildCommand: "echo no build step"
     startCommand: python server.py --quiet
     healthCheckPath: /
     envVars:
       - key: HOST
         value: 0.0.0.0
-      - key: CC_DB
-        value: /var/data/college.db
-      - key: CC_ADMIN_EMAIL
-        sync: false          # you type these in the Render dashboard
-      - key: CC_ADMIN_PASSWORD
-        sync: false
-      - key: CC_ADMIN_NAME
-        value: Counsellor
-    disk:
-      name: lodestar-data
-      mountPath: /var/data
-      sizeGB: 1
